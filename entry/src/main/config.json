@@ -1,0 +1,63 @@
+{
+  "app": {
+    "bundleName": "com.effective.harmony.study",
+    "vendor": "effective",
+    "version": {
+      "code": 1,
+      "name": "1.0"
+    },
+    "apiVersion": {
+      "compatible": 4,
+      "target": 4,
+      "releaseType": "Beta1"
+    }
+  },
+  "deviceConfig": {},
+  "module": {
+    "package": "com.effective.harmony.study",
+    "name": ".MyApplication",
+    "deviceType": [
+      "phone"
+    ],
+    "distro": {
+      "deliveryWithInstall": true,
+      "moduleName": "entry",
+      "moduleType": "entry"
+    },
+    "abilities": [
+      {
+        "skills": [
+          {
+            "entities": [
+              "entity.system.home"
+            ],
+            "actions": [
+              "action.system.home"
+            ]
+          }
+        ],
+        "orientation": "portrait",
+        "name": "com.effective.harmony.study.ability.page.SplashScreenAbility",
+        "icon": "$media:icon",
+        "description": "$string:splashscreenability_description",
+        "label": "SplashScreenFa",
+        "type": "page",
+        "launchType": "standard"
+      },
+      {
+        "orientation": "portrait",
+        "name": "com.effective.harmony.study.ability.page.MainAbility",
+        "icon": "$media:icon",
+        "description": "$string:mainability_description",
+        "label": "HarmonyStudy",
+        "type": "page",
+        "launchType": "standard"
+      },
+      {
+        "name": "com.effective.harmony.study.ability.service.ServiceAbility",
+        "type": "service",
+        "visible": true
+      }
+    ]
+  }
+}
