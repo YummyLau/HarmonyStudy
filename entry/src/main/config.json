@@ -17,7 +17,8 @@
     "package": "com.effective.harmony.study",
     "name": ".MyApplication",
     "deviceType": [
-      "phone"
+      "phone",
+      "tablet"
     ],
     "distro": {
       "deliveryWithInstall": true,
@@ -38,20 +39,38 @@
         ],
         "orientation": "portrait",
         "name": "com.effective.harmony.study.ability.page.SplashScreenAbility",
-        "icon": "$media:icon",
+        "icon": "$media:app_ic_launcher",
         "description": "$string:splashscreenability_description",
-        "label": "SplashScreenFa",
+        "label": "玩安卓",
         "type": "page",
-        "launchType": "standard"
+        "launchType": "standard",
+        "metaData": {
+          "customizeData": [
+            {
+              "extra": "",
+              "name": "hwc-theme",
+              "value": "androidhwext:style/Theme.Emui.Light.NoTitleBar"
+            }
+          ]
+        }
       },
       {
         "orientation": "portrait",
         "name": "com.effective.harmony.study.ability.page.MainAbility",
-        "icon": "$media:icon",
+        "icon": "$media:app_ic_launcher",
         "description": "$string:mainability_description",
         "label": "HarmonyStudy",
         "type": "page",
-        "launchType": "standard"
+        "launchType": "standard",
+        "metaData": {
+          "customizeData": [
+            {
+              "extra": "",
+              "name": "hwc-theme",
+              "value": "androidhwext:style/Theme.Emui.Light.NoTitleBar"
+            }
+          ]
+        }
       },
       {
         "name": "com.effective.harmony.study.ability.service.ServiceAbility",

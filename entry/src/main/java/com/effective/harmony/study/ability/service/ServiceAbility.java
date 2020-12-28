@@ -14,43 +14,32 @@ public class ServiceAbility extends Ability {
 
     @Override
     public void onStart(Intent intent) {
+        LogUtils.debug("CountServiceAbility-onStart");
         super.onStart(intent);
-        LogUtils.debug("ServiceAbility - ${public}s", "onStart");
     }
 
     @Override
     public void onCommand(Intent intent, boolean restart, int startId) {
+        LogUtils.debug("CountServiceAbility-onCommand");
         super.onCommand(intent, restart, startId);
-        LogUtils.debug("ServiceAbility - ${public}s", "onCommand");
     }
 
     @Override
     public IRemoteObject onConnect(Intent intent) {
-        super.onConnect(intent);
-        LogUtils.debug("ServiceAbility - ${public}s", "onConnect");
-        return new RemoteObject("ServiceAbility$RemoteObject");
+        LogUtils.debug("CountServiceAbility-onConnect");
+        return new RemoteObject("ServiceAbility");
     }
 
     @Override
     public void onDisconnect(Intent intent) {
+        LogUtils.debug("CountServiceAbility-onDisconnect");
         super.onDisconnect(intent);
-        LogUtils.debug("ServiceAbility - ${public}s", "onDisconnect");
     }
 
     @Override
     public void onStop() {
+        LogUtils.debug("CountServiceAbility-onStop");
         super.onStop();
-        LogUtils.debug("ServiceAbility - ${public}s", "onStop");
-    }
-
-    /**
-     * 用于返回外部连接 service 之后获取的对象
-     */
-    private class RemoteObject extends ohos.rpc.RemoteObject {
-
-        public RemoteObject(String descriptor) {
-            super(descriptor);
-        }
     }
 
 }

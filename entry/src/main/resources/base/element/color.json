@@ -15,6 +15,15 @@
     {
       "name": "app_title_text_color",
       "value": "#E6000000"
+    },
+    {
+      "name": "white_color",
+      "value": "#ffffff"
+
+    },
+    {
+      "name": "black_color",
+      "value": "#000000"
     }
   ]
 }

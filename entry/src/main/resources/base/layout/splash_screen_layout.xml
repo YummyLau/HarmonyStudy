@@ -26,7 +26,7 @@
                 ohos:id="$+id:bottom_bar_title_icon"
                 ohos:height="$float:app_icon_height"
                 ohos:width="$float:app_icon_width"
-                ohos:background_element="$graphic:icon_app"
+                ohos:background_element="$media:app_ic_launcher"
                 ohos:right_margin="$float:app_icon_right_margin"/>
 
             <Text
@@ -53,7 +53,8 @@
         ohos:height="match_parent"
         ohos:width="match_parent"
         ohos:above="$+id:bottom_bar"
-        ohos:background_element="$media:loading"/>
+        ohos:scale_mode="stretch"
+        ohos:background_element="$media:app_ic_splash_image"/>
 
     <!-- Skip Button -->
     <StackLayout
@@ -76,23 +77,4 @@
             ohos:text_size="$float:skip_text_size"/>
     </StackLayout>
 
-    <!-- Advertise Mark-->
-    <StackLayout
-        ohos:id="$+id:advertise_mark"
-        ohos:height="$float:advertise_height"
-        ohos:width="$float:advertise_width"
-        ohos:above="$+id:bottom_bar"
-        ohos:background_element="$graphic:mark_advertise"
-        ohos:bottom_margin="$float:advertise_bottom_margin"
-        ohos:left_margin="$float:advertise_left_margin">
-
-        <Text
-            ohos:id="$+id:advertise_mark_text"
-            ohos:height="match_parent"
-            ohos:width="match_parent"
-            ohos:text="$string:advertise"
-            ohos:text_alignment="center"
-            ohos:text_color="$color:advertise"
-            ohos:text_size="$float:advertise_text_size"/>
-    </StackLayout>
 </DependentLayout>

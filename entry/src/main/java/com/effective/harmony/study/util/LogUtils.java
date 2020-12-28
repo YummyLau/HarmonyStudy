@@ -1,5 +1,7 @@
 package com.effective.harmony.study.util;
 
+import com.effective.harmony.study.constants.Constants;
+import ohos.app.Context;
 import ohos.hiviewdfx.HiLog;
 import ohos.hiviewdfx.HiLogLabel;
 
@@ -9,10 +11,15 @@ import ohos.hiviewdfx.HiLogLabel;
  */
 public class LogUtils {
 
-    static final HiLogLabel label = new HiLogLabel(HiLog.LOG_APP, 0x00201, "Study");
+    static final HiLogLabel label = new HiLogLabel(HiLog.LOG_APP, 0x00201, Constants.LOG);
 
+    /**
+     * 目前官方debug无法输出
+     * @param format
+     * @param args
+     */
     public static void debug(String format, Object... args) {
-        HiLog.debug(label, format, args);
+        HiLog.info(label, format, args);
     }
 
     public static void info(String format, Object... args) {

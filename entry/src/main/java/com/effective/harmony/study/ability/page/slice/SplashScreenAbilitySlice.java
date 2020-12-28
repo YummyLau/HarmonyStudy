@@ -2,16 +2,18 @@ package com.effective.harmony.study.ability.page.slice;
 
 import com.effective.harmony.study.ResourceTable;
 
+import com.effective.harmony.study.util.IntentUtils;
 import ohos.aafwk.ability.AbilitySlice;
 import ohos.aafwk.content.Intent;
-import ohos.aafwk.content.Operation;
+import ohos.agp.components.Image;
 import ohos.agp.components.Text;
 import ohos.eventhandler.EventHandler;
 import ohos.eventhandler.EventRunner;
 import ohos.eventhandler.InnerEvent;
 
 /**
- * Splash screen ability slice
+ * 闪屏片段
+ * created by yummylau on 2020/12/28
  */
 public class SplashScreenAbilitySlice extends AbilitySlice {
     private static final int COUNT_DOWN_EVENT = 1;
@@ -19,6 +21,8 @@ public class SplashScreenAbilitySlice extends AbilitySlice {
     private static final int COUNT_DOWN_PERIOD = 1000;
 
     private Text skipButton;
+    private Image loadingPic;
+
     private Intent redirectIntent;
     private CountDownHandler handler;
 
@@ -26,8 +30,29 @@ public class SplashScreenAbilitySlice extends AbilitySlice {
     public void onStart(Intent intent) {
         super.onStart(intent);
         super.setUIContent(ResourceTable.Layout_splash_screen_layout);
-        initRedirectIntent();
-        initRedirection();
+        initView();
+        initListener();
+        loadData();
+    }
+
+    private void initView() {
+        skipButton = (Text) findComponentById(ResourceTable.Id_skip_button_text);
+        loadingPic = (Image) findComponentById(ResourceTable.Id_loading_pic);
+    }
+
+    private void initListener() {
+        skipButton.setClickedListener(component -> {
+            startAbility(redirectIntent);
+            terminateAbility();
+            if (handler != null) {
+                handler.removeAllEvent();
+            }
+        });
+    }
+
+    private void loadData() {
+        redirectIntent = IntentUtils.getMainAbilityIntent(this);
+        handler = new CountDownHandler(EventRunner.current());
     }
 
     @Override
@@ -57,37 +82,11 @@ public class SplashScreenAbilitySlice extends AbilitySlice {
         }
     }
 
-    private void initRedirectIntent() {
-        redirectIntent = new Intent();
-
-        // Set redirect destiny ability
-        Operation operation = new Intent.OperationBuilder().withDeviceId("")
-                .withBundleName(getBundleName())
-                .withAbilityName("com.effective.harmony.study.aility.page.MainAbility")
-                .build();
-        redirectIntent.setOperation(operation);
-    }
-
-    private void initRedirection() {
-        // Set skip button click listener
-        skipButton = (Text) findComponentById(ResourceTable.Id_skip_button_text);
-        if (skipButton != null) {
-            skipButton.setClickedListener(component -> {
-                startAbility(redirectIntent);
-                if (handler != null) {
-                    handler.removeAllEvent();
-                }
-            });
-        }
-
-        // Set up count down event handler
-        handler = new CountDownHandler(EventRunner.current());
-    }
-
     /**
      * Countdown handler
      */
     private class CountDownHandler extends EventHandler {
+
         private int countDown = COUNT_DOWN_TIME;
 
         CountDownHandler(EventRunner runner) {
@@ -99,12 +98,13 @@ public class SplashScreenAbilitySlice extends AbilitySlice {
             super.processEvent(event);
             switch (event.eventId) {
                 case COUNT_DOWN_EVENT:
-                    skipButton.setText("skip " + countDown);
+                    skipButton.setText("跳过 " + countDown);
                     countDown--;
                     if (countDown >= 0) {
                         handler.sendEvent(COUNT_DOWN_EVENT, COUNT_DOWN_PERIOD);
                     } else {
                         startAbility(redirectIntent);
+                        terminateAbility();
                     }
                     break;
                 default:
